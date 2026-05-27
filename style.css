@@ -1,7 +1,7 @@
 body {
   margin: 0;
   font-family: Arial;
-  background: #0b0f1a;
+  background: #0b0f1c;
   color: white;
 }
 
@@ -9,8 +9,10 @@ body {
 header {
   display: flex;
   justify-content: space-between;
-  padding: 15px 20px;
-  background: #111827;
+  padding: 14px 20px;
+  background: #101a2f;
+  position: sticky;
+  top: 0;
 }
 
 .logo {
@@ -27,58 +29,83 @@ input {
 
 /* HERO */
 .hero {
-  padding: 40px;
-  text-align: center;
-  background: linear-gradient(90deg,#111827,#0b0f1a);
+  padding: 40px 20px;
+  background: linear-gradient(90deg,#101a2f,#0b0f1c);
 }
 
-/* SECTIONS */
-h2 {
+.heroText h1 {
+  margin: 0;
+}
+
+/* SECTION TITLE */
+.title {
   padding: 10px 20px;
+  font-size: 18px;
+  opacity: 0.9;
 }
 
-/* GRID */
-.grid, .row {
+/* HORIZONTAL ROWS (APP STORE STYLE) */
+.row {
   display: flex;
   gap: 15px;
+  overflow-x: auto;
   padding: 10px 20px;
-  flex-wrap: wrap;
 }
 
-/* APP TILES */
-.tile {
-  width: 160px;
+/* BIG GAME CARDS */
+.gameCard {
+  min-width: 220px;
+  height: 120px;
+  border-radius: 16px;
+  position: relative;
   cursor: pointer;
   transition: 0.2s;
 }
 
-.tile:hover {
+.gameCard:hover {
   transform: scale(1.05);
 }
 
-/* THUMBNAILS */
-.thumb {
-  width: 160px;
-  height: 110px;
-  border-radius: 14px;
-  background: #1f2937;
+/* GAME ART STYLE BACKGROUNDS */
+.snake {
+  background: linear-gradient(135deg,#00ff99,#0066ff);
 }
 
-/* fake “game art” colors */
-.snake { background: linear-gradient(135deg,#00ff88,#0044ff); }
-.pong { background: linear-gradient(135deg,#ff4d4d,#ffcc00); }
-.clicker { background: linear-gradient(135deg,#8b5cf6,#06b6d4); }
+.pong {
+  background: linear-gradient(135deg,#ff4d4d,#ffcc00);
+}
 
-.title {
-  text-align: center;
-  margin-top: 5px;
+.clicker {
+  background: linear-gradient(135deg,#8b5cf6,#22d3ee);
+}
+
+/* TEXT OVERLAY */
+.overlay {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  font-weight: bold;
+}
+
+/* SMALL GRID */
+.grid {
+  display: flex;
+  gap: 10px;
+  padding: 10px 20px;
+  flex-wrap: wrap;
+}
+
+.miniCard {
+  background: #1a2440;
+  padding: 20px;
+  border-radius: 12px;
+  cursor: pointer;
 }
 
 /* GAME VIEW */
 #gameView {
   display: none;
   text-align: center;
-  padding: 10px;
 }
 
 iframe {
@@ -86,5 +113,5 @@ iframe {
   height: 500px;
   border: none;
   background: black;
-  border-radius: 10px;
+  border-radius: 12px;
 }
