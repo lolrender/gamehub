@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Clicker Game</title>
+</head>
+
+<body style="margin:0;background:#0b0f1a;color:white;font-family:Arial;text-align:center;">
+
+<h1>🖱 Clicker Game</h1>
+
+<h2 id="count">0</h2>
+<p>Per click: <span id="power">1</span></p>
+
+<button onclick="clickMe()" style="font-size:30px;padding:20px;border-radius:15px;">
+CLICK
+</button>
+
+<br><br>
+
+<button onclick="upgrade()">Upgrade (Cost: <span id="cost">20</span>)</button>
+
+<script>
+let count = 0;
+let power = 1;
+let cost = 20;
+
+function clickMe(){
+  count += power;
+  document.getElementById("count").innerText = count;
+}
+
+function upgrade(){
+  if(count >= cost){
+    count -= cost;
+    power++;
+    cost = Math.floor(cost * 1.6);
+
+    document.getElementById("count").innerText = count;
+    document.getElementById("power").innerText = power;
+    document.getElementById("cost").innerText = cost;
+  }
+}
+
+// auto-save (so it doesn't reset)
+setInterval(() => {
+  localStorage.setItem("clickerSave", JSON.stringify({count, power, cost}));
+}, 1000);
+
+// load save
+let save = JSON.parse(localStorage.getItem("clickerSave"));
+if(save){
+  count = save.count;
+  power = save.power;
+  cost = save.cost;
+
+  document.getElementById("count").innerText = count;
+  document.getElementById("power").innerText = power;
+  document.getElementById("cost").innerText = cost;
+}
+</script>
+
+</body>
+</html>
