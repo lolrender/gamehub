@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Pong</title>
+</head>
+
+<body style="margin:0;background:#000;overflow:hidden;">
+<canvas id="c"></canvas>
+
+<script>
+const canvas = document.getElementById("c");
+const ctx = canvas.getContext("2d");
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let ball = {
+  x: canvas.width/2,
+  y: canvas.height/2,
+  vx: 6,
+  vy: 4,
+  r: 10
+};
+
+let player = {
+  y: canvas.height/2 - 50,
+  score: 0
+};
+
+let ai = {
+  y: canvas.height/2 - 50,
+  score: 0
+};
+
+const paddleW = 12;
+const paddleH = 100;
+
+document.addEventListener("mousemove", (e) => {
+  player.y = e.clientY - paddleH/2;
+});
+
+function resetBall(dir = 1) {
+  ball.x = canvas.width/2;
+  ball.y = canvas.height/2;
+  ball.vx = 6 * dir;
+  ball.vy = (Math.random()*6 - 3);
+}
+
+function update() {
+  ball.x += ball.vx;
+  ball.y += ball.vy;
+
+  // wall bounce
+  if(ball.y < 0 || ball.y > canvas.height) ball.vy *= -1;
+
+  // player collision
+  if(
+    ball.x < 30 &&
+    ball.y > player.y &&
+    ball.y < player.y + paddleH
+  ) {
+    ball.vx *= -1;
+    ball.x = 30;
+  }
+
+  // ai collision
+  if(
+    ball.x > canvas.width - 30 &&
+    ball.y > ai.y &&
+    ball.y < ai.y + paddleH
+  ) {
+    ball.vx *= -1;
+    ball.x = canvas.width - 30;
+  }
+
+  // scoring
+  if(ball.x < 0) {
+    ai.score++;
+    resetBall(1);
+  }
+
+  if(ball.x > canvas.width) {
+    player.score++;
+    resetBall(-1);
+  }
+
+  // AI follow
+  ai.y += (ball.y - (ai.y + paddleH/2)) * 0.05;
+}
+
+function draw() {
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+
+  // center line
+  ctx.fillStyle = "#222";
+  for(let i=0;i<canvas.height;i+=30){
+    ctx.fillRect(canvas.width/2, i, 2, 15);
+  }
+
+  // paddles
+  ctx.fillStyle = "white";
+  ctx.fillRect(20, player.y, paddleW, paddleH);
+  ctx.fillRect(canvas.width-30, ai.y, paddleW, paddleH);
+
+  // ball
+  ctx.beginPath();
+  ctx.arc(ball.x, ball.y, ball.r, 0, Math.PI*2);
+  ctx.fill();
+
+  // score
+  ctx.font = "40px Arial";
+  ctx.fillText(player.score, canvas.width/2 - 80, 50);
+  ctx.fillText(ai.score, canvas.width/2 + 60, 50);
+}
+
+function loop(){
+  update();
+  draw();
+  requestAnimationFrame(loop);
+}
+
+loop();
+</script>
+</body>
+</html>
