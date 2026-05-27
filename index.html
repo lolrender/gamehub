@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Game Hub</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+  <h1>🎮 Game Hub</h1>
+  <input id="search" placeholder="Search games..." onkeyup="filterGames()">
+</header>
+
+<div class="grid">
+
+  <div class="card" onclick="openGame('games/snake.html')">
+    🐍 Snake
+  </div>
+
+  <div class="card" onclick="openGame('games/pong.html')">
+    🏓 Pong
+  </div>
+
+  <div class="card" onclick="openGame('games/clicker.html')">
+    🖱 Clicker
+  </div>
+
+</div>
+
+<iframe id="frame"></iframe>
+
+<script src="script.js"></script>
+</body>
+</html>
