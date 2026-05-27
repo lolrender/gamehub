@@ -2,34 +2,75 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Game Hub</title>
+<title>GAME OS</title>
 <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
 <header>
-  <h1>🎮 Game Hub</h1>
-  <input id="search" placeholder="Search games..." onkeyup="filterGames()">
+  <div class="logo">🧠 GAME OS</div>
+
+  <input id="search" placeholder="Search games..." onkeyup="search()">
+
+  <div class="top">
+    <button onclick="openPanel('favorites')">⭐ Favorites</button>
+    <button onclick="openPanel('recent')">🕘 Recent</button>
+    <button onclick="openPanel('stats')">📊 Stats</button>
+  </div>
 </header>
 
+<!-- HERO -->
+<section class="hero">
+  <h1>Welcome to Game OS</h1>
+  <p>Your personal offline game platform</p>
+</section>
+
+<!-- RECOMMENDED -->
+<h2>🧠 Recommended</h2>
+<div class="row" id="recommended"></div>
+
+<!-- TRENDING -->
+<h2>🔥 Trending</h2>
+<div class="row">
+
+  <div class="card" onclick="play('snake','games/snake.html')">🐍 Snake</div>
+  <div class="card" onclick="play('pong','games/pong.html')">🏓 Pong</div>
+  <div class="card" onclick="play('clicker','games/clicker.html')">🖱 Clicker</div>
+
+</div>
+
+<!-- ALL GAMES -->
+<h2>🎮 Library</h2>
 <div class="grid">
 
-  <div class="card" onclick="openGame('games/snake.html')">
+  <div class="card" data-tags="arcade snake classic" onclick="play('snake','games/snake.html')">
     🐍 Snake
   </div>
 
-  <div class="card" onclick="openGame('games/pong.html')">
+  <div class="card" data-tags="skill pong arcade" onclick="play('pong','games/pong.html')">
     🏓 Pong
   </div>
 
-  <div class="card" onclick="openGame('games/clicker.html')">
+  <div class="card" data-tags="clicker idle fun" onclick="play('clicker','games/clicker.html')">
     🖱 Clicker
   </div>
 
 </div>
 
-<iframe id="frame"></iframe>
+<!-- GAME VIEW -->
+<div id="game">
+  <button onclick="back()">⬅ Exit Game</button>
+  <h2 id="title"></h2>
+  <iframe id="frame"></iframe>
+</div>
+
+<!-- PANEL -->
+<div id="panel">
+  <h2 id="panelTitle"></h2>
+  <div id="panelContent"></div>
+  <button onclick="closePanel()">Close</button>
+</div>
 
 <script src="script.js"></script>
 </body>
