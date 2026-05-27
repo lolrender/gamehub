@@ -1,27 +1,33 @@
-function play(name, url) {
-  document.getElementById("gameView").style.display = "block";
+function openApp(id){
+  document.querySelectorAll(".page").forEach(p=>{
+    p.classList.add("hidden");
+  });
 
-  document.querySelectorAll("header, .hero, .title, .row, .grid")
-    .forEach(e => e.style.display = "none");
-
-  document.getElementById("gameTitle").innerText = name;
-  document.getElementById("frame").src = url;
+  document.getElementById(id).classList.remove("hidden");
 }
 
-function back() {
-  document.getElementById("gameView").style.display = "none";
+/* LAUNCH GAME */
+function launch(name,url){
+  document.getElementById("screen").style.display="none";
+  document.getElementById("appView").style.display="block";
 
-  document.querySelectorAll("header, .hero, .title, .row, .grid")
-    .forEach(e => e.style.display = "block");
+  document.getElementById("title").innerText=name;
+  document.getElementById("frame").src=url;
+}
+
+/* BACK */
+function back(){
+  document.getElementById("screen").style.display="block";
+  document.getElementById("appView").style.display="none";
 }
 
 /* SEARCH */
-function search() {
-  let v = document.getElementById("search").value.toLowerCase();
+function search(){
+  let v=document.getElementById("search").value.toLowerCase();
 
-  document.querySelectorAll(".miniCard, .gameCard").forEach(card => {
-    card.style.display = card.innerText.toLowerCase().includes(v)
-      ? "block"
+  document.querySelectorAll(".tile,.card").forEach(el=>{
+    el.style.display = el.innerText.toLowerCase().includes(v)
+      ? "flex"
       : "none";
   });
 }
