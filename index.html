@@ -2,74 +2,68 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>GAME OS</title>
+<title>Game Store</title>
 <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
 <header>
-  <div class="logo">🧠 GAME OS</div>
+  <div class="logo">🎮 Game Store</div>
 
-  <input id="search" placeholder="Search games..." onkeyup="search()">
-
-  <div class="top">
-    <button onclick="openPanel('favorites')">⭐ Favorites</button>
-    <button onclick="openPanel('recent')">🕘 Recent</button>
-    <button onclick="openPanel('stats')">📊 Stats</button>
-  </div>
+  <input id="search" placeholder="Search games..." onkeyup="searchGames()">
 </header>
 
-<!-- HERO -->
+<!-- HERO BANNER -->
 <section class="hero">
-  <h1>Welcome to Game OS</h1>
-  <p>Your personal offline game platform</p>
+  <div>
+    <h1>Play Instant Games</h1>
+    <p>No downloads • No installs • Just tap and play</p>
+  </div>
 </section>
 
-<!-- RECOMMENDED -->
-<h2>🧠 Recommended</h2>
-<div class="row" id="recommended"></div>
-
-<!-- TRENDING -->
-<h2>🔥 Trending</h2>
+<!-- FEATURED -->
+<h2>⭐ Featured</h2>
 <div class="row">
 
-  <div class="card" onclick="play('snake','games/snake.html')">🐍 Snake</div>
-  <div class="card" onclick="play('pong','games/pong.html')">🏓 Pong</div>
-  <div class="card" onclick="play('clicker','games/clicker.html')">🖱 Clicker</div>
+  <div class="tile" onclick="openGame('Snake','games/snake.html')">
+    <div class="thumb snake"></div>
+    <div class="title">Snake</div>
+  </div>
+
+  <div class="tile" onclick="openGame('Pong','games/pong.html')">
+    <div class="thumb pong"></div>
+    <div class="title">Pong</div>
+  </div>
 
 </div>
 
 <!-- ALL GAMES -->
-<h2>🎮 Library</h2>
+<h2>🎮 All Games</h2>
 <div class="grid">
 
-  <div class="card" data-tags="arcade snake classic" onclick="play('snake','games/snake.html')">
-    🐍 Snake
+  <div class="tile" onclick="openGame('Snake','games/snake.html')">
+    <div class="thumb snake"></div>
+    <div class="title">Snake</div>
   </div>
 
-  <div class="card" data-tags="skill pong arcade" onclick="play('pong','games/pong.html')">
-    🏓 Pong
+  <div class="tile" onclick="openGame('Pong','games/pong.html')">
+    <div class="thumb pong"></div>
+    <div class="title">Pong</div>
   </div>
 
-  <div class="card" data-tags="clicker idle fun" onclick="play('clicker','games/clicker.html')">
-    🖱 Clicker
+  <div class="tile" onclick="openGame('Clicker','games/clicker.html')">
+    <div class="thumb clicker"></div>
+    <div class="title">Clicker</div>
   </div>
 
 </div>
 
 <!-- GAME VIEW -->
-<div id="game">
-  <button onclick="back()">⬅ Exit Game</button>
-  <h2 id="title"></h2>
+<div id="gameView">
+  <button onclick="back()">← Back</button>
+  <h2 id="gameTitle"></h2>
   <iframe id="frame"></iframe>
-</div>
-
-<!-- PANEL -->
-<div id="panel">
-  <h2 id="panelTitle"></h2>
-  <div id="panelContent"></div>
-  <button onclick="closePanel()">Close</button>
 </div>
 
 <script src="script.js"></script>
