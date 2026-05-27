@@ -2,66 +2,63 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Game Store</title>
+<title>Game OS Store</title>
 <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
 <header>
-  <div class="logo">🎮 Game Store</div>
+  <div class="logo">🧠 Game OS Store</div>
 
-  <input id="search" placeholder="Search games..." onkeyup="searchGames()">
+  <input id="search" placeholder="Search games..." onkeyup="search()">
 </header>
 
 <!-- HERO BANNER -->
 <section class="hero">
-  <div>
-    <h1>Play Instant Games</h1>
-    <p>No downloads • No installs • Just tap and play</p>
+  <div class="heroText">
+    <h1>Discover Games Instantly</h1>
+    <p>Play without downloads • Save progress • Instant launch</p>
   </div>
 </section>
 
-<!-- FEATURED -->
-<h2>⭐ Featured</h2>
+<!-- FEATURED ROW -->
+<h2 class="title">⭐ Featured</h2>
 <div class="row">
 
-  <div class="tile" onclick="openGame('Snake','games/snake.html')">
-    <div class="thumb snake"></div>
-    <div class="title">Snake</div>
+  <div class="gameCard snake" onclick="play('Snake','games/snake.html')">
+    <div class="overlay">Snake</div>
   </div>
 
-  <div class="tile" onclick="openGame('Pong','games/pong.html')">
-    <div class="thumb pong"></div>
-    <div class="title">Pong</div>
+  <div class="gameCard pong" onclick="play('Pong','games/pong.html')">
+    <div class="overlay">Pong</div>
+  </div>
+
+</div>
+
+<!-- TRENDING -->
+<h2 class="title">🔥 Trending</h2>
+<div class="row">
+
+  <div class="gameCard clicker" onclick="play('Clicker','games/clicker.html')">
+    <div class="overlay">Clicker</div>
   </div>
 
 </div>
 
 <!-- ALL GAMES -->
-<h2>🎮 All Games</h2>
+<h2 class="title">🎮 All Games</h2>
 <div class="grid">
 
-  <div class="tile" onclick="openGame('Snake','games/snake.html')">
-    <div class="thumb snake"></div>
-    <div class="title">Snake</div>
-  </div>
-
-  <div class="tile" onclick="openGame('Pong','games/pong.html')">
-    <div class="thumb pong"></div>
-    <div class="title">Pong</div>
-  </div>
-
-  <div class="tile" onclick="openGame('Clicker','games/clicker.html')">
-    <div class="thumb clicker"></div>
-    <div class="title">Clicker</div>
-  </div>
+  <div class="miniCard" onclick="play('Snake','games/snake.html')">🐍 Snake</div>
+  <div class="miniCard" onclick="play('Pong','games/pong.html')">🏓 Pong</div>
+  <div class="miniCard" onclick="play('Clicker','games/clicker.html')">🖱 Clicker</div>
 
 </div>
 
 <!-- GAME VIEW -->
 <div id="gameView">
-  <button onclick="back()">← Back</button>
+  <button onclick="back()">← Back to Store</button>
   <h2 id="gameTitle"></h2>
   <iframe id="frame"></iframe>
 </div>
