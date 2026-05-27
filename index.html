@@ -2,64 +2,77 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Game OS Store</title>
+<title>Nebula Web OS</title>
 <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<header>
-  <div class="logo">🧠 Game OS Store</div>
+<!-- TOP BAR (browser style) -->
+<div class="topbar">
+  <div class="logo">🌐 Nebula OS</div>
 
-  <input id="search" placeholder="Search games..." onkeyup="search()">
-</header>
+  <input placeholder="Search apps, games, tools..." id="search" onkeyup="search()">
 
-<!-- HERO BANNER -->
-<section class="hero">
-  <div class="heroText">
-    <h1>Discover Games Instantly</h1>
-    <p>Play without downloads • Save progress • Instant launch</p>
+  <div class="tabs">
+    <button onclick="openApp('home')">🏠 Home</button>
+    <button onclick="openApp('games')">🎮 Games</button>
+    <button onclick="openApp('tools')">🧰 Tools</button>
   </div>
-</section>
+</div>
 
-<!-- FEATURED ROW -->
-<h2 class="title">⭐ Featured</h2>
-<div class="row">
+<!-- MAIN SCREEN -->
+<div id="screen">
 
-  <div class="gameCard snake" onclick="play('Snake','games/snake.html')">
-    <div class="overlay">Snake</div>
+  <!-- HOME -->
+  <div id="home" class="page">
+    <h1>Welcome to Nebula OS</h1>
+    <p>Your web-based system for games, tools, and apps</p>
+
+    <div class="grid">
+
+      <div class="card" onclick="openApp('games')">🎮 Games Hub</div>
+      <div class="card" onclick="openApp('tools')">🧰 Tools Hub</div>
+
+    </div>
   </div>
 
-  <div class="gameCard pong" onclick="play('Pong','games/pong.html')">
-    <div class="overlay">Pong</div>
+  <!-- GAMES -->
+  <div id="games" class="page hidden">
+
+    <h2>🎮 Games</h2>
+
+    <div class="grid">
+
+      <div class="tile" onclick="launch('Snake','games/snake.html')">🐍 Snake</div>
+      <div class="tile" onclick="launch('Pong','games/pong.html')">🏓 Pong</div>
+      <div class="tile" onclick="launch('Clicker','games/clicker.html')">🖱 Clicker</div>
+
+    </div>
+
+  </div>
+
+  <!-- TOOLS -->
+  <div id="tools" class="page hidden">
+
+    <h2>🧰 Tools</h2>
+
+    <div class="grid">
+
+      <div class="tile">🧮 Calculator</div>
+      <div class="tile">📝 Notes</div>
+      <div class="tile">⏱ Timer</div>
+
+    </div>
+
   </div>
 
 </div>
 
-<!-- TRENDING -->
-<h2 class="title">🔥 Trending</h2>
-<div class="row">
-
-  <div class="gameCard clicker" onclick="play('Clicker','games/clicker.html')">
-    <div class="overlay">Clicker</div>
-  </div>
-
-</div>
-
-<!-- ALL GAMES -->
-<h2 class="title">🎮 All Games</h2>
-<div class="grid">
-
-  <div class="miniCard" onclick="play('Snake','games/snake.html')">🐍 Snake</div>
-  <div class="miniCard" onclick="play('Pong','games/pong.html')">🏓 Pong</div>
-  <div class="miniCard" onclick="play('Clicker','games/clicker.html')">🖱 Clicker</div>
-
-</div>
-
-<!-- GAME VIEW -->
-<div id="gameView">
-  <button onclick="back()">← Back to Store</button>
-  <h2 id="gameTitle"></h2>
+<!-- APP VIEW -->
+<div id="appView">
+  <button onclick="back()">← Back</button>
+  <h2 id="title"></h2>
   <iframe id="frame"></iframe>
 </div>
 
